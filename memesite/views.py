@@ -11,11 +11,11 @@ import random
 def home(request):
 	user_agent = get_user_agent(request)
 	if user_agent.is_mobile:
-		return render(request, "home.html")
+		return render(request, "home_mobile.html")
 	elif user_agent.is_tablet:
-		return render(request, "home.html")
+		return render(request, "home_mobile.html")
 	else:
-		return render(request, "homepc.html")
+		return render(request, "home_pc.html")
 
 def switch_image(request):
 	image = random.choice(Image.objects.all())
