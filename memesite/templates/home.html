@@ -1,0 +1,194 @@
+<head>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<style>
+	@import url('https://fonts.googleapis.com/css?family=Open+Sans:700');
+	@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+
+	input.form {
+		line-height:16px;
+		font-size:14px;
+		padding:5px;
+		font-family: 'Open Sans', sans-serif;
+	}
+	
+	input:focus {
+    outline:none !important;
+	}
+
+	textarea:focus {
+    outline:none !important;
+	}
+
+	.json_alert {
+		position: absolute;
+		background-color: lightgrey;
+		text-align: center;
+		vertical-align:middle;
+		opacity:1.0;
+		top:40px;
+		left:40px;
+		height: 1000px;
+		width: 1000px;
+		z-index: 99;
+	}
+
+	.chart {
+		border: 2px solid darkgrey;
+	}
+
+	.boxA {
+		width:90%;
+		height:60%;
+		background:#FFF;
+		margin:10px auto;
+		padding-bottom:10px;
+		padding-right:10px;
+		padding-left:10px;
+		position: relative;
+	}
+
+	.boxB {
+		width:66%;
+		height:auto;
+		background:#FFF;
+		opacity:0.82;
+		margin:10px auto;
+		padding-top:10px;
+		padding-bottom:10px;
+		padding-left:16px;
+		padding-right:0;
+	}
+
+	.effect
+	{
+	    position:relative;
+	    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	}
+	.effect:before, .effect:after
+	{
+		content:"";
+	    position:absolute; 
+	    z-index:-1;
+	    box-shadow:0 0 20px rgba(0,0,0,0.8);
+	    top:0;
+	    bottom:0;
+	    left:0;
+	    right:0;
+	    border-radius:20px / 10px;
+	} 
+	.effect:after
+	{
+	    right:10px; 
+	    left:auto; 
+	    transform:skew(8deg) rotate(3deg);
+	}
+	
+	.eff2{
+	     box-shadow: 0 10px 6px -6px #777;
+	     opacity:1.0;
+	}
+
+	</style>
+</head>
+
+<body style="text-align:center;font-family:'Open Sans', sans-serif;background-color: aliceblue;">
+
+	<h1> Welcome to the internet </h1>
+
+	<div class="boxA effect" id="memebox">
+		<br><br>
+		<span id="image"></span>
+		<p id="engagement" style="font-size:medium;font-family:'Open Sans', sans-serif;vertical-align:middle;"></p>
+		<br><br>
+	</div>
+
+</body>
+
+
+
+<script>
+	document.getElementById('image').onclick = function() {engage();};
+	document.getElementById('engagement').onclick = function() {engage();};
+	var all_urls = [];
+	var all_engaged = [];
+	var current_engaged = "";
+	var current_url = "";
+	var current_text = "";
+	var current_clicks = "";
+
+	window.onload = function () {
+		switchimage();
+		window.setInterval(function(){
+			switchimage();
+		}, 6000);
+	};
+
+	function switchimage() {
+		$.ajax({
+			url: "{% url 'switch_image' %}",
+			success: function (data){
+				current_url = data.url;
+				current_engaged = data.engaged;
+				current_clicks = data.clicks;
+				current_text = data.text;
+				if (!all_urls.includes(current_url)) {
+					all_urls.push(current_url);
+					all_engaged.push(current_engaged);
+				} 
+				else {
+					for (i=0; i<all_urls.length; i++) {
+						if (all_urls[i] == current_url) {
+							current_engaged = all_engaged[i];
+						}
+					}
+				}
+				fill(true);
+			}
+		});
+	}
+
+	function engage() {
+		if (current_engaged=="no") {
+			$.ajax({
+				url: "{% url 'engage' %}",
+				data: {"url": current_url},
+				success: function (data){
+					current_engaged = data.engaged;
+					current_clicks = data.clicks;
+					for (i=0; i<all_urls.length; i++) {
+						if (all_urls[i] == current_url) {
+							all_engaged[i] = current_engaged;
+						}
+					}
+					fill(false);
+				}
+			});
+		}
+	}
+
+
+
+	function fill(animate) {
+		if (animate) {
+			document.getElementById('image').style.display="none";
+		}
+		document.getElementById('engagement').style.display="none";
+		var raw = '<img style="height:80%;width:auto;" src='+current_url+'>';
+		document.getElementById('image').innerHTML = '<img style="height:80%;width:auto;" src='+current_url+'>';
+		if (current_engaged == "yes") {
+			document.getElementById('engagement').style.color = "black";
+			document.getElementById('engagement').innerHTML = '<img style="height:5%;width:auto;" src=https://s3.amazonaws.com/aristaticfiles/like.png>'+" "+current_clicks+ " "+current_text;
+		} 
+		else {
+			document.getElementById('engagement').style.color = "silver";
+			document.getElementById('engagement').innerHTML = '<img style="height:5%;width:auto;" src=https://s3.amazonaws.com/aristaticfiles/likepre.png>'+" "+current_clicks+ " "+current_text+"<br>";			
+		}
+		if (animate) {
+			$('#image').show(500);
+			$('#engagement').show(500);
+		}
+		document.getElementById('engagement').style.display="block";
+	}
+
+</script>
+

@@ -1,0 +1,1 @@
+web: gunicorn memecity.wsgi --log-file -
