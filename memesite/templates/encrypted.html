@@ -103,7 +103,7 @@
 	<div class="boxA effect" id="memebox">
 		<br><br>
 		<span id="image"></span>
-		<h2 id="engagement" style="font-family:'Open Sans', sans-serif;vertical-align:bottom;"></h2>
+		<p id="engagement" style="font-family:'Open Sans', sans-serif;vertical-align:bottom;"></p>
 		<br>
 	</div>
 
@@ -122,78 +122,15 @@
 	var current_clicks = "";
 
 	window.onload = function () {
-		switchimage();
+		changetimer();
 		window.setInterval(function(){
-			switchimage();
-		}, 13000);
+			changetimer();
+		}, 14000);
 	};
 
-	function switchimage() {
+	function changetimer() {
 		$.ajax({
-			url: "{% url 'switch_image' %}",
-			success: function (data){
-				current_url = data.url;
-				current_engaged = data.engaged;
-				current_clicks = data.clicks;
-				current_text = data.text;
-				if (!all_urls.includes(current_url)) {
-					all_urls.push(current_url);
-					all_engaged.push(current_engaged);
-				} 
-				else {
-					for (i=0; i<all_urls.length; i++) {
-						if (all_urls[i] == current_url) {
-							current_engaged = all_engaged[i];
-						}
-					}
-				}
-				fill(true);
-			}
 		});
 	}
 
-	function engage() {
-		if (current_engaged=="no") {
-			$.ajax({
-				url: "{% url 'engage' %}",
-				data: {"url": current_url},
-				success: function (data){
-					current_engaged = data.engaged;
-					current_clicks = data.clicks;
-					for (i=0; i<all_urls.length; i++) {
-						if (all_urls[i] == current_url) {
-							all_engaged[i] = current_engaged;
-						}
-					}
-					fill(false);
-				}
-			});
-		}
-	}
-
-
-
-	function fill(animate) {
-		if (animate) {
-			document.getElementById('image').style.display="none";
-		}
-		document.getElementById('engagement').style.display="none";
-		var raw = '<img style="height:80%;width:auto;" src='+current_url+'>';
-		document.getElementById('image').innerHTML = '<img style="height:auto;width:90%;" src='+current_url+'>';
-		if (current_engaged == "yes") {
-			document.getElementById('engagement').style.color = "black";
-			document.getElementById('engagement').innerHTML = '<img style="height:5%;width:auto;" src=https://s3.amazonaws.com/aristaticfiles/like.png>'+" "+current_clicks+ " "+current_text;
-		} 
-		else {
-			document.getElementById('engagement').style.color = "silver";
-			document.getElementById('engagement').innerHTML = '<img style="height:5%;width:auto;" src=https://s3.amazonaws.com/aristaticfiles/likepre.png>'+" "+current_clicks+ " "+current_text+"<br>";			
-		}
-		if (animate) {
-			$('#image').show(500);
-			$('#engagement').show(500);
-		}
-		document.getElementById('engagement').style.display="block";
-	}
-
 </script>
-
