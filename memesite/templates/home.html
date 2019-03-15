@@ -93,13 +93,17 @@
 
 <body style="text-align:center;font-family:'Open Sans', sans-serif;background-color: aliceblue;">
 
-	<h1> Welcome to the internet </h1>
+	<h1 style='text-align:center;font-family:"Montserrat", sans-serif;'>welcome to the internet</h1>
+	<br>
+	<br>
+	<br>
+	<br>
 
 	<div class="boxA effect" id="memebox">
 		<br><br>
 		<span id="image"></span>
-		<p id="engagement" style="font-size:medium;font-family:'Open Sans', sans-serif;vertical-align:middle;"></p>
-		<br><br>
+		<p id="engagement" style="font-size:20px;font-family:'Open Sans', sans-serif;vertical-align:bottom;"></p>
+		<br>
 	</div>
 
 </body>
@@ -174,7 +178,7 @@
 		}
 		document.getElementById('engagement').style.display="none";
 		var raw = '<img style="height:80%;width:auto;" src='+current_url+'>';
-		document.getElementById('image').innerHTML = '<img style="height:80%;width:auto;" src='+current_url+'>';
+		document.getElementById('image').innerHTML = '<img style="height:auto;width:90%;" src='+current_url+'>';
 		if (current_engaged == "yes") {
 			document.getElementById('engagement').style.color = "black";
 			document.getElementById('engagement').innerHTML = '<img style="height:5%;width:auto;" src=https://s3.amazonaws.com/aristaticfiles/like.png>'+" "+current_clicks+ " "+current_text;
