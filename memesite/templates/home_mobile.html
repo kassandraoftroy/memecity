@@ -1,5 +1,11 @@
 <head>
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script>
+		var host = "www.memecity.biz";
+		if ((host == window.location.host) && (window.location.protocol != "https:")){
+		window.location.protocol = "https";
+		}
+	</script>
 	<style>
 	@import url('https://fonts.googleapis.com/css?family=Open+Sans:700');
 	@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
@@ -102,7 +108,7 @@
 	<div class="boxA effect" id="memebox">
 		<br><br>
 		<span id="image"></span>
-		<p id="engagement" style="font-size:1.4em;font-family:'Open Sans', sans-serif;vertical-align:bottom;line-height:1.2em"></p>
+		<h2 id="engagement" style="font-family:'Open Sans', sans-serif;vertical-align:bottom;"></h2>
 		<br>
 	</div>
 
