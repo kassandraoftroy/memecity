@@ -31,7 +31,7 @@ def engage(request):
 
 def update_time(request):
 	now = time.time() #current epoch time
-	dist = 1553572800 - now #returns seconds
+	dist = 1553616000 - now #returns seconds
 	days = int(dist // 86400)
 	hours = int(dist // 3600 % 24)
 	minutes = int(dist // 60 % 60)
