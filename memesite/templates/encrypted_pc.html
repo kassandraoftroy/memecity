@@ -38,7 +38,7 @@
 	}
 
 	.boxA {
-		width:90%;
+		width:33%;
 		height:auto;
 		background:#FFF;
 		margin:10px auto;
@@ -96,40 +96,30 @@
 
 	<h1 style='text-align:center;font-family:"Comic Sans MS", "Comic Sans", "Margarine";'>welcome to meme city</h1>
 	<br>
-	<br>
-	<br>
-	<br>
 
 	<div class="boxA effect" id="memebox">
 		<br><br>
-		<span id="image"></span>
-		<p id="engagement" style="font-family:'Open Sans', sans-serif;vertical-align:bottom;"></p>
+		<span id="image"><img style="height:auto;width:90%;" src="https://we-rad.com/wp-content/uploads/2017/05/rad-ssl-padlock.gif"></span>
 		<br>
 	</div>
+	<h1 id="countdown" style="font-family:'Open Sans', sans-serif;vertical-align:bottom;text-align:center;"></h1>
 
 </body>
 
-
-
 <script>
-	document.getElementById('image').onclick = function() {engage();};
-	document.getElementById('engagement').onclick = function() {engage();};
-	var all_urls = [];
-	var all_engaged = [];
-	var current_engaged = "";
-	var current_url = "";
-	var current_text = "";
-	var current_clicks = "";
-
 	window.onload = function () {
 		changetimer();
 		window.setInterval(function(){
 			changetimer();
-		}, 14000);
+		}, 500);
 	};
 
 	function changetimer() {
 		$.ajax({
+			url: "{% url 'update_time' %}",
+			success: function(data) {
+				document.getElementById('countdown').innerHTML = "SITE OPENS IN: <br><span style='color:red;'>" + data.days + "</span> days <span style='color:red;'>" + data.hours + "</span> hours <span style='color:red;'>" + data.minutes + "</span> minutes <span style='color:red;'>" + data.seconds + "</span> seconds";
+			}
 		});
 	}
 

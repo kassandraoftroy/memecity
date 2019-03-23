@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^switch/$', views.switch_image, name='switch_image'),
     url(r'^engage/$', views.engage, name='engage'),    
+    url(r'^timer/$', views.update_time, name='update_time'),
 ]

@@ -6,16 +6,16 @@ from django.http import HttpResponse, JsonResponse
 from django_user_agents.utils import get_user_agent
 from django.views.decorators.csrf import ensure_csrf_cookie
 from models import Image, Engagement
-import random
+import random, time
 
 def home(request):
 	user_agent = get_user_agent(request)
 	if user_agent.is_mobile:
-		return render(request, "home_mobile.html")
+		return render(request, "encrypted_mobile.html")
 	elif user_agent.is_tablet:
-		return render(request, "home_mobile.html")
+		return render(request, "encrypted_mobile.html")
 	else:
-		return render(request, "home_pc.html")
+		return render(request, "encrypted_pc.html")
 
 def switch_image(request):
 	image = random.choice(Image.objects.all())
@@ -28,5 +28,14 @@ def engage(request):
 	image.clicks += 1
 	image.save()
 	return JsonResponse({'engaged': 'yes', 'clicks': str(image.clicks)})
+
+def update_time(request):
+	now = time.time() #current epoch time
+	dist = 1553572800 - now #returns seconds
+	days = int(dist // 86400)
+	hours = int(dist // 3600 % 24)
+	minutes = int(dist // 60 % 60)
+	seconds = int(dist % 60)
+	return JsonResponse({'days':str(days), 'hours': str(hours), 'minutes': str(minutes), 'seconds': str(seconds)})
 
 
