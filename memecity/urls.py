@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^switch/$', views.switch_image, name='switch_image'),
     url(r'^engage/$', views.engage, name='engage'),    
     url(r'^timer/$', views.update_time, name='update_time'),
+    url(r'^dev/view/$', views.dev_view, name='dev_view'),
+    url(r'^participate/$', views.audience, name='audience'),
 ]

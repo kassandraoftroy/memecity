@@ -108,10 +108,15 @@
 	<br>
 	<br>
 	<h1 id="countdown" style="font-family:'Open Sans', sans-serif;vertical-align:bottom;text-align:center;"></h1>
+	<br>
+	<br>
+	<br>
+	<div id="fb_event" class="eff2" style="background-color:navy;border:none;font-size:15px;font-family: 'Open Sans', sans-serif;color:white; height:45px; line-height: 45px;vertical-align: middle;width:200px;margin:auto;cursor: pointer;"><strong>FB EVENT</strong></div>
 
 </body>
 
 <script>
+	document.getElementById("fb_event").onclick = function() {goFB();}
 	window.onload = function () {
 		changetimer();
 		window.setInterval(function(){
@@ -126,6 +131,10 @@
 				document.getElementById('countdown').innerHTML = "SITE OPENS IN: <br><span style='color:red;'>" + data.days + "</span> days <span style='color:red;'>" + data.hours + "</span> hours <span style='color:red;'>" + data.minutes + "</span> minutes <span style='color:red;'>" + data.seconds + "</span> seconds";
 			}
 		});
+	}
+
+	function goFB() {
+		location.href = "https://www.facebook.com/events/409087322982845/";
 	}
 
 </script>

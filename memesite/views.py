@@ -10,12 +10,20 @@ import random, time
 
 def home(request):
 	user_agent = get_user_agent(request)
+	now = time.time()
+	page = "encrypted"
+	if now>1553616000:
+		page = "home"
+	if now>1553616000+43200:
+		page = "encrypted"
+	if now>1553616000+43200+72000:
+		page = "home"
 	if user_agent.is_mobile:
-		return render(request, "encrypted_mobile.html")
+		return render(request, "%s_mobile.html" %page)
 	elif user_agent.is_tablet:
-		return render(request, "encrypted_mobile.html")
+		return render(request, "%s_mobile.html" %page)
 	else:
-		return render(request, "encrypted_pc.html")
+		return render(request, "%s_pc.html" %page)
 
 def switch_image(request):
 	image = random.choice(Image.objects.all())
@@ -31,11 +39,30 @@ def engage(request):
 
 def update_time(request):
 	now = time.time() #current epoch time
-	dist = 1553616000 - now #returns seconds
+	if now<1553616000:
+		dist = 1553616000 - now #returns seconds
+	if now>1553616000:
+		dist = 1553616000+43200+72000 - now
 	days = int(dist // 86400)
 	hours = int(dist // 3600 % 24)
 	minutes = int(dist // 60 % 60)
 	seconds = int(dist % 60)
 	return JsonResponse({'days':str(days), 'hours': str(hours), 'minutes': str(minutes), 'seconds': str(seconds)})
 
+
+def dev_view(request):
+	user_agent = get_user_agent(request)
+	if user_agent.is_mobile:
+		return render(request, "home_mobile.html")
+	elif user_agent.is_tablet:
+		return render(request, "home_mobile.html")
+	else:
+		return render(request, "home_pc.html")
+
+def audience(request):
+	now = time.time()
+	if now<1553447941:
+		return HttpResponse("It's not time to participate yet! Sorry :/")
+	else:
+		return HttpResponse("Thank you for participating! :)")
 
