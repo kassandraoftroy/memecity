@@ -103,14 +103,18 @@
 		<span id="image"></span>
 		<p id="engagement" style="font-size:20px;font-family:'Open Sans', sans-serif;vertical-align:bottom;"></p>
 	</div>
+	<div id="audience" class="eff2" style="background-color:navy;border:none;font-size:15px;font-family: 'Open Sans', sans-serif;color:white; height:45px; line-height: 45px;vertical-align: middle;width:300px;margin:auto;cursor: pointer;"><strong>AUDIENCE PARTICIPATION</strong></div>
+	<br>
+	<div id="chat" class="eff2" style="background-color:navy;border:none;font-size:15px;font-family: 'Open Sans', sans-serif;color:white; height:45px; line-height: 45px;vertical-align: middle;width:300px;margin:auto;cursor: pointer;"><strong>LEAVE A REVIEW</strong></div>
 
 </body>
 
 
 
 <script>
-	document.getElementById('image').onclick = function() {engage();};
-	document.getElementById('engagement').onclick = function() {engage();};
+	document.getElementById('image').onclick = function() {engage();}
+	document.getElementById('engagement').onclick = function() {engage();}
+	document.getElementById('audience').onclick = function() {audience();}
 	var all_urls = [];
 	var all_engaged = [];
 	var current_engaged = "";
@@ -168,8 +172,6 @@
 		}
 	}
 
-
-
 	function fill(animate) {
 		if (animate) {
 			document.getElementById('image').style.display="none";
@@ -190,6 +192,10 @@
 			$('#engagement').show(500);
 		}
 		document.getElementById('engagement').style.display="block";
+	}
+
+	function audience() {
+		location.href = "{% url 'audience' %}";
 	}
 
 </script>

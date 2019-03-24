@@ -61,8 +61,9 @@ def dev_view(request):
 
 def audience(request):
 	now = time.time()
-	if now<1553447941:
-		return HttpResponse("It's not time to participate yet! Sorry :/")
+	if now<1553449286:
+		text = "It's not time to participate yet! Sorry :/"
 	else:
-		return HttpResponse("Thank you for participating! :)")
+		text = "Thank you for participating! :)"
+	return render(request, "participate.html", {'text':text})
 
