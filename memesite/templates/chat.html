@@ -3,11 +3,11 @@
 </head>
 
 <body>
-<h1 style="font-size:60px;"> Leave your review for Lord of Meme City </h1>
+<h1 style="font-size:60px;"> Leave your review for <br> Lord of Meme City </h1>
 
 
-<p id="chats"></p>
-<input id="input" type="text" size="30"><button id="button">Enter</button>
+<p id="chats" style="font-size:35px"></p>
+<input id="input" type="text" size="30" style="font-size:35px"><button id="button">Enter</button>
 
 </body>
 
@@ -28,7 +28,7 @@
 	        names = data.names;
 	        out = first_text;
 	        for (i=0;i<texts.length;i++) {
-	        	out += "<span style='color:maroon;'><strong>"+names[i]+":</strong></span>"+texts[i]+"<br>";
+	        	out += "<span style='color:maroon;'><strong>"+names[i]+": </strong></span>"+texts[i]+"<br>";
 	        }
 	        document.getElementById('chats').innerHTML = out;
 	      }
