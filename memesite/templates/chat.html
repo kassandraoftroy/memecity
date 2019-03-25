@@ -3,16 +3,16 @@
 </head>
 
 <body>
-<h1 style="font-size:75px;"> Leave your review for Lord of Meme City </h1>
+<h1 style="font-size:60px;"> Leave your review for Lord of Meme City </h1>
 
 
 <p id="chats"></p>
-<input id="input" type="text" size="30"><button onclick="add_text()">Enter</button>
+<input id="input" type="text" size="30"><button id="button">Enter</button>
 
 </body>
 
 <script>
-	var username = "{{ username }}";
+	var username = "{{username}}";
 	var first_text = "<span style='color:maroon;'><strong>Sauron:</strong></span> What did you think of Lord of Meme City?<br>";
 	document.getElementById('chats').innerHTML = first_text;
 	window.onload = function () {
@@ -24,9 +24,9 @@
 	  $.ajax({
 	      url: "{% url 'update_chat' %}",
 	      success: function (data) {
-	        texts = data.texts
-	        names = data.names
-	        out = first_text
+	        texts = data.texts;
+	        names = data.names;
+	        out = first_text;
 	        for (i=0;i<texts.length;i++) {
 	        	out += "<span style='color:maroon;'><strong>"+names[i]+":</strong></span>"+texts[i]+"<br>";
 	        }
@@ -34,12 +34,13 @@
 	      }
 	  });
 	}
+	document.getElementById('button').onclick = function() {add_text();}
 
 	function add_text() {
 	  text = $('#input').val();
 	  $.ajax({
 	      url: "{% url 'add_chat' %}",
-	      data: {'text':text, 'name': username}
+	      data: {'text':text, 'name': username},
 	      success: function (data) {
 	      	console.log(data.status);
 	      }
