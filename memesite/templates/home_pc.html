@@ -111,11 +111,11 @@
 </body>
 
 
-
 <script>
 	document.getElementById('image').onclick = function() {engage();}
 	document.getElementById('engagement').onclick = function() {engage();}
 	document.getElementById('audience').onclick = function() {audience();}
+	document.getElementById('chat').onclick = function() {chat();}
 	var all_urls = [];
 	var all_engaged = [];
 	var current_engaged = "";
@@ -197,6 +197,10 @@
 
 	function audience() {
 		location.href = "{% url 'audience' %}";
+	}
+
+	function chat() {
+		location.href = "{% url 'enter_chat' %}";
 	}
 
 </script>

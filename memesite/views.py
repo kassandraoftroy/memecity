@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django_user_agents.utils import get_user_agent
 from django.views.decorators.csrf import ensure_csrf_cookie
-from models import Image, Engagement
+from models import Image, Engagement, Chat, Username
 import random, time
 
 def home(request):
@@ -61,9 +61,32 @@ def dev_view(request):
 
 def audience(request):
 	now = time.time()
-	if now<1553449286:
+	if now<1553737800:
 		text = "It's not time to participate yet! Sorry :/"
 	else:
 		text = "Thank you for participating! :)"
 	return render(request, "participate.html", {'text':text})
+
+def enter_chat(request):
+	user = random.choice(Username.objects.all())
+	user.delete()
+	return render(request, "chat.html", {'username':user.name})
+
+def add_chat(request):
+	text = str(request.GET.get("text", ""))
+	name = str(request.GET.get("name", ""))
+	if text == "" or name == "":
+		return JsonResponse({'status': 'ERROR'})
+	chat = Chat()
+	chat.name = name
+	chat.chat = text
+	chat.save()
+	return JsonResponse({'status': 'OK'})
+
+def update_chat(request):
+	all_chats = Chat.objects.all()
+	texts = [str(i.chat) for i in all_chats]
+	names = [i.name for i in all_chats]
+	return JsonResponse({'texts':texts, 'names':names})
+
 

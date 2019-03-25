@@ -1,0 +1,49 @@
+<head>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+<h1 style="font-size:75px;"> Leave your review for Lord of Meme City </h1>
+
+
+<p id="chats"></p>
+<input id="input" type="text" size="30"><button onclick="add_text()">Enter</button>
+
+</body>
+
+<script>
+	var username = "{{ username }}";
+	var first_text = "<span style='color:maroon;'><strong>Sauron:</strong></span> What did you think of Lord of Meme City?<br>";
+	document.getElementById('chats').innerHTML = first_text;
+	window.onload = function () {
+		window.setInterval(function(){
+			update_chat();
+		}, 500);
+	};
+	function update_chat() {
+	  $.ajax({
+	      url: "{% url 'update_chat' %}",
+	      success: function (data) {
+	        texts = data.texts
+	        names = data.names
+	        out = first_text
+	        for (i=0;i<texts.length;i++) {
+	        	out += "<span style='color:maroon;'><strong>"+names[i]+":</strong></span>"+texts[i]+"<br>";
+	        }
+	        document.getElementById('chats').innerHTML = out;
+	      }
+	  });
+	}
+
+	function add_text() {
+	  text = $('#input').val();
+	  $.ajax({
+	      url: "{% url 'add_chat' %}",
+	      data: {'text':text, 'name': username}
+	      success: function (data) {
+	      	console.log(data.status);
+	      }
+	  });		
+	}
+
+</script>

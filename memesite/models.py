@@ -15,3 +15,16 @@ class Engagement(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Chat(models.Model):
+	name = models.CharField(max_length=500)
+	chat = models.TextField()
+
+	def __str__(self):
+		return self.chat
+
+class Username(models.Model):
+	name = models.CharField(max_length=500)
+
+	def __str__(self):
+		return self.name
