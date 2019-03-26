@@ -67,6 +67,9 @@ def audience(request):
 	return render(request, "participate.html", {'text':text})
 
 def enter_chat(request):
+	now = time.time()
+	if now<1553737800+300:
+		return render(request, "participate.html", {'text':"Sorry, but you haven't seen the full show yet :/"})
 	user = random.choice(Username.objects.all())
 	user.delete()
 	return render(request, "chat.html", {'username':user.name})
@@ -88,4 +91,7 @@ def update_chat(request):
 	names = [i.name for i in all_chats]
 	return JsonResponse({'texts':texts, 'names':names})
 
-
+def dev_chat(request):
+	user = random.choice(Username.objects.all())
+	user.delete()
+	return render(request, "chat.html", {'username':user.name})
