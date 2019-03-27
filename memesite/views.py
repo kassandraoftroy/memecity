@@ -68,7 +68,7 @@ def audience(request):
 
 def enter_chat(request):
 	now = time.time()
-	if now<1553737800+800:
+	if now<1553739000:
 		return render(request, "participate.html", {'text':"Sorry, but you haven't seen the full show yet :/"})
 	user = random.choice(Username.objects.all())
 	user.delete()
