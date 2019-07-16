@@ -9,20 +9,12 @@ import random, time
 
 def home(request):
 	user_agent = get_user_agent(request)
-	now = time.time()
-	page = "encrypted"
-	if now>1553616000:
-		page = "home"
-	if now>1553616000+43200:
-		page = "encrypted"
-	if now>1553616000+43200+72000:
-		page = "home"
 	if user_agent.is_mobile:
-		return render(request, "%s_mobile.html" %page)
+		return render(request, "fb_home.html")
 	elif user_agent.is_tablet:
-		return render(request, "%s_mobile.html" %page)
+		return render(request, "fb_home.html")
 	else:
-		return render(request, "%s_pc.html" %page)
+		return render(request, "fb_home.html")
 
 def switch_image(request):
 	image = random.choice(Image.objects.all())
