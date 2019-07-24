@@ -1,0 +1,306 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+
+<style>
+	@import url('https://fonts.googleapis.com/css?family=Open+Sans:700');
+
+	body
+	{
+	 text-align:center;
+	 width:100%;
+	 margin:0 auto;
+	 padding:0px;
+	 font-family:"Open Sans", sans-serif;
+	 background: linear-gradient(white, #D3D8E8);
+	}
+	#header_wrapper
+	{
+	 width:100%;
+	 min-width:980px;
+	 background-color:#4c66a4;
+	 height:10%;
+	}
+	#header
+	{
+	 width:980px;
+	 margin:0px auto;
+	 padding:0px;
+	 height:10%;
+	}
+	#header li
+	{
+	 list-style-type:none;
+	 float:left;
+	 text-align:left;
+	 color:white;
+	}
+	#header #sitename
+	{
+	 margin-top:25px;
+	}
+	#header #sitename h1
+	{
+	 color:white;
+	 text-decoration:none;
+	 font-size:200%;
+	 font-weight:900;
+	}
+	#header form
+	{
+	 margin-top:15px;
+	 float:right;
+	}
+	#header form li
+	{
+	 font-size:13px;
+	 margin-left:15px;
+	}
+	#header form li a
+	{
+	 color:#A9BCF5;
+	 text-decoration:none;
+	}
+	#header form input[type="text"]
+	{
+	 margin-top:3px;
+	 margin-bottom:3px;
+	 width:150px;
+	 border:1px solid #08298A;
+	 height:25px;
+	 padding-left:3px;
+	}
+	#header form input[type="password"]
+	{
+	 margin-top:3px;
+	 margin-bottom:3px;
+	 width:150px;
+	 border:1px solid #08298A;
+	 height:25px;
+	 padding-left:3px;
+	}
+	#header form input[type="submit"]
+	{
+	 height:25px;
+	 margin-top:20px;
+	 background-color:#084B8A;
+	 color:white;
+	 border:1px solid #08298A;
+	}
+	#wrapper
+	{
+	 margin:0 auto;
+	 padding:0px;
+	 text-align:center;
+	 width:980px;
+	}
+	#wrapper div
+	{
+	 float:middle;
+	}
+	#wrapper #div1
+	{
+	 margin-top:30px;
+	 width:100%;
+	 text-align:center;
+	}
+	#wrapper #div1 p
+	{
+	 font-size:20px;
+	 font-weight:bold;
+	 margin:0px;
+	 color:#0e385f;
+	}
+	#footer_wrapper
+	{
+	 width:100%;
+	 clear:both;
+	 float:left;
+	 margin-top:30px;
+	 min-width:995px;
+	 background-color:white;
+	 text-align:left;
+	}
+	#footer1
+	{
+	 width:980px;
+	 margin:0px auto;
+	 padding:0px;
+	 border-bottom:1px solid #E6E6E6;
+	 height:30px;
+	 line-height:30px;
+	 font-size:12px;
+	 color:#848484;
+	}
+	#footer1 a
+	{
+	 color:#365899;
+	 display:inline;
+	 margin-left:10px;
+	 text-decoration:none;
+	}
+	#footer1 a:hover
+	{
+	 text-decoration:underline;
+	}
+	#footer2
+	{
+	 width:980px;
+	 margin:0px auto;
+	 padding:0px;
+	 font-size:12px;
+	 color:#848484;
+	}
+	#footer2 a
+	{
+	 color:#365899;
+	 display:inline-block;
+	 margin:5px;
+	 margin-left:0px;
+	 min-width:80px;
+	 text-decoration:none;
+	}
+	#footer2 a:hover
+	{
+	 text-decoration:underline;
+	}
+	.boxA {
+		width:90%;
+		height:auto;
+		background:#FFF;
+		margin:10px auto;
+		padding-bottom:10px;
+		padding-right:10px;
+		padding-left:10px;
+		position: relative;
+	}
+	.effect
+	{
+	    position:relative;
+	    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	}
+	.effect:before, .effect:after
+	{
+		content:"";
+	    position:absolute; 
+	    z-index:-1;
+	    box-shadow:0 0 20px rgba(0,0,0,0.8);
+	    top:0;
+	    bottom:0;
+	    left:0;
+	    right:0;
+	    border-radius:20px / 10px;
+	} 
+	.effect:after
+	{
+	    right:10px; 
+	    left:auto; 
+	    transform:skew(8deg) rotate(3deg);
+	}
+	.eff2{
+	     box-shadow: 0 10px 6px -6px #777;
+	     opacity:1.0;
+	}
+</style>
+<body>
+
+<div id="header_wrapper">
+ <div id="header">
+ <li id="sitename"><p>&nbsp;&nbsp;Meme City<p></li>
+ <form action="">
+ <li><p>Hello, {{ name }}&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+ </form>
+ </div>
+</div>
+
+<div id="wrapper">
+
+<div id="div1">
+<h1>Welcome to Meme City! <br> This is your Newsfeed {{ name }}!<br></h1>
+</div>
+<a href='http://www.memecity.biz/review/?name={{ name }}'><div id="chat" class="eff2" style="background-color:navy;border:none;font-size:30px;font-family: 'Open Sans', sans-serif;color:white; height:80px; line-height: 80px;vertical-align: middle;width:500px;margin:auto;cursor: pointer;"><strong>Meme City Chat Room</strong></div></a>
+<br><br><br><br>
+
+{% for image in images %}
+	<div class="boxA effect">
+		<br><br>
+		<img style="height:auto;width:90%;" src='{{ image.url }}'>
+		<h1 id="{{ image.url }}" style="color:silver;font-size:3em;"> {{ image.clicks }} likes <img style="height:5%;width:auto;" src=https://s3.amazonaws.com/aristaticfiles/likepre.png><h1>
+	</div>
+	<br><br><br>
+{% endfor %}
+
+</div>
+
+<div id="footer_wrapper">
+
+<div id="footer1">
+English (UK) <a href="">हिन्दी</a><a href="">ਪੰਜਾਬੀ</a><a href=""> اردو</a><a href="">தமிழ்</a><a href="">বাংলা</a><a href="">मराठी</a><a href="">తెలుగు</a><a href="">ગુજરાતી</a><a href="">ಕನ್ನಡ</a><a href="">മലയാളം</a>
+</div>
+<div id="footer2">
+<a href="">Sign Up</a><a href="">Log In</a><a href="">Messenger</a><a href="">Talkerscode</a><a href="">Mobile</a><a href="">Find Friends</a><a href="">Badges</a><a href="">People</a><a href="">Pages</a><a href="">Places</a><a href="">Games</a><a href="">Locations</a><a href="">Celebrities</a><a href="">Groups</a><a href="">Moments</a><a href="">About</a><a href="">Create Advert</a><a href="">Create Page</a><a href="">Developers</a><a href="">Careers</a><a href="">Privacy</a><a href="">Cookies</a><a href="">Ads</a><a href="">Terms</a><a href="">Help</a>
+<p></a>
+</div>
+
+</div>
+</body>
+<script>
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_1.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_1.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_2.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_2.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_3.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_3.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_4.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_4.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_5.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_5.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_6.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_6.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_7.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_7.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_8.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_8.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_9.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_9.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_10.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_10.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_11.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_11.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_12.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_12.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_13.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_13.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_14.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_14.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_15.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_15.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_16.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_16.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_17.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_17.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_18.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_18.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_19.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_19.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_20.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_20.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_21.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_21.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_22.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_22.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_23.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_23.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_24.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_24.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_25.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_25.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_26.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_26.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_27.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_27.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_28.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_28.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_29.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_29.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_30.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_30.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_31.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_31.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_32.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_32.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_33.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_33.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_34.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_34.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_35.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_35.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_36.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_36.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_37.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_37.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_38.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_38.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_39.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_39.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_40.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_40.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_41.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_41.gif');}
+	document.getElementById('https://s3.amazonaws.com/aristaticfiles/GIF_42.gif').onclick = function() {engage('https://s3.amazonaws.com/aristaticfiles/GIF_42.gif');}
+
+	function engage(current_url) {
+		if (document.getElementById(current_url).style.color == "silver") {
+			$.ajax({
+				url: "{% url 'engage' %}",
+				data: {"url": current_url},
+				success: function (data){
+					document.getElementById(current_url).style.color = "black";
+					document.getElementById(current_url).innerHTML = data.clicks + ' ' + 'likes <img style="height:5%;width:auto;" src=https://s3.amazonaws.com/aristaticfiles/like.png>';
+				}
+			});
+		}
+	}
+
+</script>
+</html>

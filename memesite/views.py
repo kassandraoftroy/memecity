@@ -10,16 +10,22 @@ import random, time
 def home(request):
 	user_agent = get_user_agent(request)
 	if user_agent.is_mobile:
-		return render(request, "fb_home.html")
+		return render(request, "fb_mobile.html")
 	elif user_agent.is_tablet:
-		return render(request, "fb_home.html")
+		return render(request, "fb_mobile.html")
 	else:
 		return render(request, "fb_home.html")
 
-def switch_image(request):
-	image = random.choice(Image.objects.all())
-	engage = random.choice(Engagement.objects.all())
-	return JsonResponse({'url': image.url, 'text':engage.name, 'clicks': str(image.clicks), 'engaged': 'no'})
+def newsfeed(request):
+	user_agent = get_user_agent(request)
+	name = str(request.GET.get("name", None))
+	image = Image.objects.all()
+	if user_agent.is_mobile:
+		return render(request, "newsfeed_mobile.html", {"name": name, 'images': image})
+	elif user_agent.is_tablet:
+		return render(request, "newsfeed_mobile.html", {"name": name, 'images': image})
+	else:
+		return render(request, "newsfeed.html", {"name": name, 'images': image})
 
 def engage(request):
 	url = str(request.GET.get("url", ""))
@@ -40,31 +46,9 @@ def update_time(request):
 	seconds = int(dist % 60)
 	return JsonResponse({'days':str(days), 'hours': str(hours), 'minutes': str(minutes), 'seconds': str(seconds)})
 
-
-def dev_view(request):
-	user_agent = get_user_agent(request)
-	if user_agent.is_mobile:
-		return render(request, "home_mobile.html")
-	elif user_agent.is_tablet:
-		return render(request, "home_mobile.html")
-	else:
-		return render(request, "home_pc.html")
-
-def audience(request):
-	now = time.time()
-	if now<1553737800:
-		text = "It's not time to participate yet! Sorry :/"
-	else:
-		text = "Thank you for participating! :)"
-	return render(request, "participate.html", {'text':text})
-
 def enter_chat(request):
-	now = time.time()
-	if now<1553739000:
-		return render(request, "participate.html", {'text':"Sorry, but you haven't seen the full show yet :/"})
-	user = random.choice(Username.objects.all())
-	user.delete()
-	return render(request, "chat.html", {'username':user.name})
+	name = str(request.GET.get("name", None))
+	return render(request, "chat.html", {'username':name})
 
 def add_chat(request):
 	text = str(request.GET.get("text", ""))

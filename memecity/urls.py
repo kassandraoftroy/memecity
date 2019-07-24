@@ -20,11 +20,9 @@ from memesite import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-    url(r'^switch/$', views.switch_image, name='switch_image'),
-    url(r'^engage/$', views.engage, name='engage'),    
+    url(r'^newsfeed/$', views.newsfeed, name='newsfeed'),
+    url(r'^engage/$', views.engage, name='engage'),
     url(r'^timer/$', views.update_time, name='update_time'),
-    url(r'^dev/view/$', views.dev_view, name='dev_view'),
-    url(r'^participate/$', views.audience, name='audience'),
     url(r'^review/$', views.enter_chat, name='enter_chat'),
     url(r'^update-chatroom/$', views.update_chat, name='update_chat'),
     url(r'^new-message/$', views.add_chat, name='add_chat'),
