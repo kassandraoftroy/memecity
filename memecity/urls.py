@@ -22,9 +22,10 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^newsfeed/$', views.newsfeed, name='newsfeed'),
     url(r'^engage/$', views.engage, name='engage'),
-    url(r'^timer/$', views.update_time, name='update_time'),
     url(r'^review/$', views.enter_chat, name='enter_chat'),
+    url(r'^timer/$', views.update_time, name='update_time'),
     url(r'^update-chatroom/$', views.update_chat, name='update_chat'),
     url(r'^new-message/$', views.add_chat, name='add_chat'),
     url(r'^dev/chat/$', views.dev_chat, name='dev_chat'),
+    url(r'^finale/$', views.finale, name='finale'),
 ]

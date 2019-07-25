@@ -35,16 +35,12 @@ def engage(request):
 	return JsonResponse({'engaged': 'yes', 'clicks': str(image.clicks)})
 
 def update_time(request):
-	now = time.time() #current epoch time
-	if now<1553616000:
-		dist = 1553616000 - now #returns seconds
-	if now>1553616000:
-		dist = 1553616000+43200+72000 - now
-	days = int(dist // 86400)
-	hours = int(dist // 3600 % 24)
-	minutes = int(dist // 60 % 60)
-	seconds = int(dist % 60)
-	return JsonResponse({'days':str(days), 'hours': str(hours), 'minutes': str(minutes), 'seconds': str(seconds)})
+	showtime = 1564018728+120
+	if time.time() > showtime:
+		show = "yes"
+	else:
+		show = "no"
+	return JsonResponse({"show": show})
 
 def enter_chat(request):
 	name = str(request.GET.get("name", None))
@@ -71,3 +67,7 @@ def dev_chat(request):
 	user = random.choice(Username.objects.all())
 	user.delete()
 	return render(request, "chat.html", {'username':user.name})
+
+def finale(request):
+	name = str(request.GET.get("name", None))
+	return render(request, "finale.html", {'name': name})
