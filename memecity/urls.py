@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^timer/$', views.update_time, name='update_time'),
     url(r'^update-chatroom/$', views.update_chat, name='update_chat'),
     url(r'^new-message/$', views.add_chat, name='add_chat'),
-    url(r'^dev/chat/$', views.dev_chat, name='dev_chat'),
+    url(r'^dev/$', views.dev, name='dev'),
     url(r'^finale/$', views.finale, name='finale'),
 ]

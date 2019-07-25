@@ -19,7 +19,12 @@ def home(request):
 def newsfeed(request):
 	user_agent = get_user_agent(request)
 	name = str(request.GET.get("name", None))
-	image = Image.objects.all()
+	images = Image.objects.all()
+	idxs = range(len(images))
+	random.shuffle(idxs)
+	image = []
+	for idx in idxs:
+		image.append(images[idx])
 	if user_agent.is_mobile:
 		return render(request, "newsfeed_mobile.html", {"name": name, 'images': image})
 	elif user_agent.is_tablet:
@@ -35,7 +40,7 @@ def engage(request):
 	return JsonResponse({'engaged': 'yes', 'clicks': str(image.clicks)})
 
 def update_time(request):
-	showtime = 1564018728+120
+	showtime = 1564098120
 	if time.time() > showtime:
 		show = "yes"
 	else:
@@ -63,10 +68,21 @@ def update_chat(request):
 	names = [i.name for i in all_chats]
 	return JsonResponse({'texts':texts, 'names':names})
 
-def dev_chat(request):
-	user = random.choice(Username.objects.all())
-	user.delete()
-	return render(request, "chat.html", {'username':user.name})
+def dev(request):
+	user_agent = get_user_agent(request)
+	name = str(request.GET.get("name", None))
+	images = Image.objects.all()
+	idxs = range(len(images))
+	random.shuffle(idxs)
+	image = []
+	for idx in idxs:
+		image.append(images[idx])
+	if user_agent.is_mobile:
+		return render(request, "devfeed.html", {"name": name, 'images': image})
+	elif user_agent.is_tablet:
+		return render(request, "devfeed.html", {"name": name, 'images': image})
+	else:
+		return render(request, "devfeed_desktop.html", {"name": name, 'images': image})
 
 def finale(request):
 	name = str(request.GET.get("name", None))
