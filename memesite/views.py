@@ -40,7 +40,7 @@ def engage(request):
 	return JsonResponse({'engaged': 'yes', 'clicks': str(image.clicks)})
 
 def update_time(request):
-	showtime = 1564098120
+	showtime = 1570063200
 	if time.time() > showtime:
 		show = "yes"
 	else:
