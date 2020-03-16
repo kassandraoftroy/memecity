@@ -215,13 +215,13 @@
 
 <div id="wrapper">
 <div id="invisie">
-	<br><br><div class="boxA effect"><br><img width="85%" src="https://s3.amazonaws.com/aristaticfiles/finalgif.gif"><br></div><br><br><a style="text-decoration:none;" href="http://www.memecity.biz/finale/?name={{ name }}"><div id="chat" class="eff2" style="background-color:red; border:none; font-size:30px; font-family: sans-serif; color:white; height:140px; line-height: 140px;vertical-align: middle; width:66%; margin:auto;cursor: pointer;text-decoration:none;"><strong>DELETE YOUR SOCIAL MEDIA FOREVER!</strong></div></a><br><br><br><br>
+	<br><br><div class="boxA effect"><br><img width="85%" src="https://s3.amazonaws.com/aristaticfiles/finalgif.gif"><br></div><br><br><a style="text-decoration:none;" href="https://lotr4.herokuapp.com/finale/?name={{ name }}"><div id="chat" class="eff2" style="background-color:red; border:none; font-size:30px; font-family: sans-serif; color:white; height:140px; line-height: 140px;vertical-align: middle; width:66%; margin:auto;cursor: pointer;text-decoration:none;"><strong>DELETE YOUR SOCIAL MEDIA FOREVER!</strong></div></a><br><br><br><br>
 </div>
 
 <div id="div1">
 <h1>Welcome to Meme City! <br> This is your Newsfeed {{ name }}!<br></h1>
 </div>
-<a style="text-decoration:none;" href="http://www.memecity.biz/review/?name={{ name }}"><div id="chat" class="eff2" style="background-color:navy;border:none;font-size:30px;font-family: 'Open Sans', sans-serif;color:white; height:80px; line-height: 80px;vertical-align: middle;width:500px;margin:auto;cursor: pointer;text-decoration:none;"><strong>Meme City Chat Room</strong></div></a>
+<a style="text-decoration:none;" href="https://lotr4.herokuapp.com/review/?name={{ name }}"><div id="chat" class="eff2" style="background-color:navy;border:none;font-size:30px;font-family: 'Open Sans', sans-serif;color:white; height:80px; line-height: 80px;vertical-align: middle;width:500px;margin:auto;cursor: pointer;text-decoration:none;"><strong>Meme City Chat Room</strong></div></a>
 <br><br><br><br>
 
 {% for image in images %}
@@ -274,7 +274,7 @@ English (UK) <a href="">हिन्दी</a><a href="">ਪੰਜਾਬੀ</a><
 			url: "{% url 'update_time' %}",
 			success: function (data){
 				if (data.show == "yes") {
-					document.getElementById('invisie').innerHTML = '<br><br><div class="boxA effect"><br><img width="85%" src="https://s3.amazonaws.com/aristaticfiles/finalgif.gif"><br></div><br><br><a style="text-decoration:none;" href="http://www.memecity.biz/finale/?name={{ name }}"><div id="chat" class="eff2" style="background-color:red; border:none; font-size:30px; font-family: sans-serif; color:white; height:140px; line-height: 140px;vertical-align: middle; width:66%; margin:auto;cursor: pointer;text-decoration:none;"><strong>DELETE YOUR SOCIAL MEDIA FOREVER!</strong></div></a><br><br><br><br>';
+					document.getElementById('invisie').innerHTML = '<br><br><div class="boxA effect"><br><img width="85%" src="https://s3.amazonaws.com/aristaticfiles/finalgif.gif"><br></div><br><br><a style="text-decoration:none;" href="https://lotr4.herokuapp.com/finale/?name={{ name }}"><div id="chat" class="eff2" style="background-color:red; border:none; font-size:30px; font-family: sans-serif; color:white; height:140px; line-height: 140px;vertical-align: middle; width:66%; margin:auto;cursor: pointer;text-decoration:none;"><strong>DELETE YOUR SOCIAL MEDIA FOREVER!</strong></div></a><br><br><br><br>';
 				}
 			}
 		});
